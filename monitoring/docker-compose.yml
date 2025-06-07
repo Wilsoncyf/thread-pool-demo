@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus-config:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  grafana:
+    image: grafana/grafana-oss:10.0.3
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus

@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s # 每15秒拉取一次数据
+
+scrape_configs:
+  - job_name: 'thread-pool-demo'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['host.docker.internal:8080'] # 让容器内的Prometheus能访问到宿主机的8080端口
